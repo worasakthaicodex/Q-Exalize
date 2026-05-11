@@ -3,183 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q-Exalize Professional Editor</title>
+    <title>Q-Exalize Editor v3.0</title>
     <style>
-        :root { --primary: #0078d4; --success: #28a745; --bg: #f0f2f5; --glass: rgba(255, 255, 255, 0.9); }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; display: flex; height: 100vh; color: #333; }
+        :root { --primary: #0078d4; --success: #28a745; --bg: #f0f2f5; --card: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; display: flex; height: 100vh; overflow: hidden; }
         
-        /* Layout */
-        .sidebar { width: 350px; background: #fff; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
-        .main-content { flex: 1; padding: 25px; overflow-y: auto; background: #fafafa; }
+        .sidebar { width: 380px; background: #fff; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
+        .main-content { flex: 1; padding: 20px; overflow-y: auto; background: #f8f9fa; }
         
-        /* UI Components */
-        .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #e1e4e8; }
-        .header-input { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #e1e4e8; }
+        .header-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; }
         
         .input-group { margin-bottom: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 14px; color: #555; }
-        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
-        input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 2px rgba(0,120,212,0.2); }
-
-        /* Options */
-        .option-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; background: #f8f9fa; padding: 8px; border-radius: 6px; }
-        .option-row input[type="radio"] { width: auto; cursor: pointer; }
-        .near-miss { border-color: #ffc107 !important; }
-
-        /* Image Box */
-        .image-preview-box { width: 100%; height: 120px; background: #f1f3f4; border: 2px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
-        .image-preview-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        /* Buttons */
-        .btn { border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-add { background: var(--primary); color: white; width: 100%; }
-        .btn-export { background: var(--success); color: white; width: 100%; font-size: 16px; }
-        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-
-        .q-item { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-        .badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; background: #eee; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: #555; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; }
+        
+        .option-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; background: #f1f3f4; padding: 6px; border-radius: 6px; }
+        .btn { border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .btn-primary { background: var(--primary); color: white; width: 100%; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        
+        .q-item { padding: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
+        .q-item:hover { background: #f0f7ff; }
+        .active-edit { background: #e7f3ff; border-left: 4px solid var(--primary); }
+        .img-preview { width: 100%; height: 100px; border: 2px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .img-preview img { max-width: 100%; max-height: 100%; }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <div style="padding: 20px; border-bottom: 1px solid #eee;">
-        <h2 style="margin:0; color:var(--primary);">Q-Exalize Editor</h2>
-        <p style="font-size:12px; color:#666;">Expert Content Creator v2.0</p>
+    <div style="padding: 20px; border-bottom: 1px solid #eee; background: #fff;">
+        <h2 style="margin:0; color:var(--primary); font-size: 20px;">Q-Exalize Ultimate</h2>
+        <p style="font-size:11px; color:#888;">Auto-Save Enabled | JSON Editor v3.0</p>
+        <div style="margin-top: 10px; display: flex; gap: 5px;">
+            <input type="file" id="importFile" style="display:none" onchange="importJSON(this)" accept=".json">
+            <button class="btn btn-success" style="flex:1; font-size: 12px;" onclick="document.getElementById('importFile').click()">📂 Load JSON</button>
+            <button class="btn btn-danger" style="font-size: 12px;" onclick="clearAllData()">🧹 ล้างทั้งหมด</button>
+        </div>
     </div>
     
-    <div style="flex:1; overflow-y:auto; padding: 20px;">
-        <h3>📌 รายการข้อสอบ (<span id="count">0</span>)</h3>
-        <div id="questionList"></div>
-    </div>
+    <div id="questionList" style="flex:1; overflow-y:auto;"></div>
 
     <div style="padding: 20px; border-top: 1px solid #eee;">
-        <button class="btn btn-export" onclick="exportJSON()">📥 Download JSON Package</button>
+        <button class="btn btn-primary" style="background:#28a745; font-size: 16px;" onclick="exportJSON()">📥 Export JSON Package</button>
     </div>
 </div>
 
 <div class="main-content">
     <div class="card">
-        <h3>📂 ข้อมูลวิชา (Quiz Metadata)</h3>
-        <div class="header-input">
-            <div class="input-group"><label>ชื่อวิชา/บทเรียน</label><input type="text" id="quizTitle" placeholder="เช่น กฎหมายคอมพิวเตอร์"></div>
-            <div class="input-group"><label>รหัสวิชา</label><input type="text" id="courseCode" placeholder="QEX-001"></div>
-            <div class="input-group"><label>เวลาทำข้อสอบ (นาที)</label><input type="number" id="timeLimit" value="30"></div>
-            <div class="input-group"><label>เกณฑ์ผ่าน (%)</label><input type="number" id="passCriteria" value="60"></div>
+        <div class="header-grid">
+            <div class="input-group"><label>ชื่อวิชา</label><input type="text" id="mTitle" oninput="saveMeta()"></div>
+            <div class="input-group"><label>รหัส</label><input type="text" id="mCode" oninput="saveMeta()"></div>
+            <div class="input-group"><label>เวลา (นาที)</label><input type="number" id="mTime" oninput="saveMeta()"></div>
+            <div class="input-group"><label>เกณฑ์ (%)</label><input type="number" id="mPass" oninput="saveMeta()"></div>
         </div>
     </div>
 
-    <div class="card">
-        <h3>📝 สร้างโจทย์ใหม่ (5 ตัวเลือก)</h3>
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+    <div class="card" id="editorSection">
+        <h3 id="formTitle">📝 เพิ่มโจทย์ใหม่</h3>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
             <div>
-                <div class="input-group">
-                    <label>โจทย์ (Text Question)</label>
-                    <textarea id="qText" rows="4" placeholder="พิมพ์โจทย์ที่นี่..."></textarea>
-                </div>
-                <div class="input-group">
-                    <label>คำอธิบาย/เฉลย (Explanation)</label>
-                    <textarea id="qExplan" rows="2" placeholder="เฉลยข้อนี้เพราะอะไร..."></textarea>
-                </div>
+                <div class="input-group"><label>โจทย์</label><textarea id="qText" rows="3"></textarea></div>
+                <div class="input-group"><label>คำเฉลย (Explanation)</label><textarea id="qExplan" rows="2"></textarea></div>
             </div>
             <div>
-                <label>รูปภาพโจทย์</label>
-                <input type="file" id="qFile" style="display:none" onchange="previewImg(this)">
-                <div class="image-preview-box" onclick="document.getElementById('qFile').click()" id="imgBox">
-                    <span>คลิกเพื่อเพิ่มรูป</span>
+                <div class="input-group"><label>รูปภาพ (Link URL หรือเลือกไฟล์)</label>
+                    <input type="text" id="qImgUrl" placeholder="https://..." oninput="updateImgPreview()">
+                    <input type="file" id="qFile" style="margin-top:5px; font-size:10px;" onchange="handleFile(this)">
                 </div>
+                <div class="img-preview" id="imgBox"><span>ไม่มีรูป</span></div>
             </div>
         </div>
 
-        <div style="margin-top: 10px;">
-            <label>ตัวเลือก (เลือกปุ่มหน้าข้อที่ "ถูก" / ใส่ขอบเหลืองข้อที่ "ใกล้เคียง")</label>
-            <div id="optionsContainer">
-                <script>
-                    for(let i=0; i<5; i++) {
-                        document.write(`
-                            <div class="option-row">
-                                <input type="radio" name="correct" value="${i}" ${i==0?'checked':''}>
-                                <input type="text" class="opt-text" placeholder="ตัวเลือกที่ ${i+1}">
-                                <input type="checkbox" class="near-miss-check" title="ติ๊กถ้าเป็นข้อใกล้เคียง"> 🎯
-                            </div>
-                        `);
-                    }
-                </script>
-            </div>
+        <div id="optionsArea">
+            <label>5 ตัวเลือก (จุดกลม = ข้อถูก | ติ๊กถูก = ข้อใกล้เคียง)</label>
+            <script>
+                for(let i=0; i<5; i++) document.write(`
+                    <div class="option-row">
+                        <input type="radio" name="correct" value="${i}" ${i==0?'checked':''}>
+                        <input type="text" class="opt-text" placeholder="ตัวเลือกที่ ${i+1}">
+                        <input type="checkbox" class="near-check" title="ข้อใกล้เคียง">
+                    </div>
+                `);
+            </script>
         </div>
-        
-        <button class="btn btn-add" style="margin-top:15px;" onclick="addQ()">➕ บันทึกข้อนี้ลงรายการ</button>
+        <div style="margin-top: 15px; display: flex; gap: 10px;">
+            <button class="btn btn-primary" id="addBtn" onclick="addOrUpdateQ()">➕ บันทึกข้อมูล</button>
+            <button class="btn" id="cancelBtn" style="display:none; background:#888; color:#white;" onclick="resetForm()">ยกเลิก</button>
+        </div>
     </div>
 </div>
 
 <script>
     let questions = [];
-    let currentImg64 = "";
+    let editingId = null;
+    let currentImgBase64 = "";
 
-    function previewImg(input) {
-        if (input.files && input.files[0]) {
+    // 1. Load Data on Startup
+    window.onload = () => {
+        const savedMeta = JSON.parse(localStorage.getItem('qex_meta') || '{}');
+        document.getElementById('mTitle').value = savedMeta.title || "";
+        document.getElementById('mCode').value = savedMeta.code || "";
+        document.getElementById('mTime').value = savedMeta.timeLimit || 30;
+        document.getElementById('mPass').value = savedMeta.passScore || 60;
+        
+        questions = JSON.parse(localStorage.getItem('qex_questions') || '[]');
+        updateUI();
+    };
+
+    function saveMeta() {
+        const meta = {
+            title: document.getElementById('mTitle').value,
+            code: document.getElementById('mCode').value,
+            timeLimit: document.getElementById('mTime').value,
+            passScore: document.getElementById('mPass').value
+        };
+        localStorage.setItem('qex_meta', JSON.stringify(meta));
+    }
+
+    function handleFile(input) {
+        if (input.files[0]) {
             let r = new FileReader();
             r.onload = e => {
-                currentImg64 = e.target.result;
-                document.getElementById('imgBox').innerHTML = `<img src="${currentImg64}">`;
+                currentImgBase64 = e.target.result;
+                document.getElementById('qImgUrl').value = ""; // ล้างลิงก์ถ้าเลือกไฟล์
+                updateImgPreview();
             };
             r.readAsDataURL(input.files[0]);
         }
     }
 
-    function addQ() {
-        const text = document.getElementById('qText').value;
-        if(!text && !currentImg64) return alert("ใส่โจทย์ด้วยครับ");
+    function updateImgPreview() {
+        const url = document.getElementById('qImgUrl').value;
+        const box = document.getElementById('imgBox');
+        if (url) {
+            box.innerHTML = `<img src="${url}">`;
+            currentImgBase64 = "";
+        } else if (currentImgBase64) {
+            box.innerHTML = `<img src="${currentImgBase64}">`;
+        } else {
+            box.innerHTML = "<span>ไม่มีรูป</span>";
+        }
+    }
 
-        const q = {
-            id: Date.now(),
+    function addOrUpdateQ() {
+        const text = document.getElementById('qText').value;
+        if (!text && !currentImgBase64 && !document.getElementById('qImgUrl').value) return alert("ใส่โจทย์หรือรูปด้วยครับ");
+
+        const qData = {
+            id: editingId || Date.now(),
             text: text,
-            image: currentImg64,
+            image: document.getElementById('qImgUrl').value || currentImgBase64,
             explanation: document.getElementById('qExplan').value,
             options: Array.from(document.querySelectorAll('.opt-text')).map(i => i.value),
             correctIndex: parseInt(document.querySelector('input[name="correct"]:checked').value),
-            nearMissIndex: Array.from(document.querySelectorAll('.near-miss-check')).map((c, i) => c.checked ? i : -1).filter(i => i !== -1)
+            nearMiss: Array.from(document.querySelectorAll('.near-check')).map((c, i) => c.checked ? i : -1).filter(i => i !== -1)
         };
 
-        questions.push(q);
+        if (editingId) {
+            const idx = questions.findIndex(x => x.id === editingId);
+            questions[idx] = qData;
+        } else {
+            questions.push(qData);
+        }
+
+        saveAndRefresh();
+        resetForm();
+    }
+
+    function editQ(id) {
+        const q = questions.find(x => x.id === id);
+        editingId = id;
+        document.getElementById('formTitle').innerText = "Edit Question / แก้ไขโจทย์";
+        document.getElementById('qText').value = q.text;
+        document.getElementById('qExplan').value = q.explanation;
+        document.getElementById('qImgUrl').value = q.image.startsWith('data:') ? "" : q.image;
+        currentImgBase64 = q.image.startsWith('data:') ? q.image : "";
+        
+        const optInputs = document.querySelectorAll('.opt-text');
+        const nearChecks = document.querySelectorAll('.near-check');
+        q.options.forEach((val, i) => optInputs[i].value = val);
+        document.querySelector(`input[name="correct"][value="${q.correctIndex}"]`).checked = true;
+        nearChecks.forEach((c, i) => c.checked = q.nearMiss.includes(i));
+        
+        document.getElementById('cancelBtn').style.display = "inline-block";
+        document.getElementById('addBtn').innerText = "💾 อัปเดตข้อมูล";
+        updateImgPreview();
         updateUI();
-        // Clear เฉพาะส่วนโจทย์
+    }
+
+    function resetForm() {
+        editingId = null;
+        document.getElementById('formTitle').innerText = "📝 เพิ่มโจทย์ใหม่";
         document.getElementById('qText').value = "";
         document.getElementById('qExplan').value = "";
-        document.getElementById('imgBox').innerHTML = "<span>คลิกเพื่อเพิ่มรูป</span>";
-        currentImg64 = "";
+        document.getElementById('qImgUrl').value = "";
+        document.getElementById('qFile').value = "";
+        currentImgBase64 = "";
         document.querySelectorAll('.opt-text').forEach(i => i.value = "");
-        document.querySelectorAll('.near-miss-check').forEach(i => i.checked = false);
+        document.querySelectorAll('.near-check').forEach(i => i.checked = false);
+        document.getElementById('cancelBtn').style.display = "none";
+        document.getElementById('addBtn').innerText = "➕ บันทึกข้อมูล";
+        updateImgPreview();
+        updateUI();
+    }
+
+    function saveAndRefresh() {
+        localStorage.setItem('qex_questions', JSON.stringify(questions));
+        updateUI();
     }
 
     function updateUI() {
-        document.getElementById('count').innerText = questions.length;
-        document.getElementById('questionList').innerHTML = questions.map((q, i) => `
-            <div class="q-item">
-                <span><b>${i+1}.</b> ${q.text.substring(0, 15)}...</span>
-                <button onclick="questions.splice(${i},1);updateUI()" style="background:none; border:none; color:red; cursor:pointer;">🗑️</button>
+        const list = document.getElementById('questionList');
+        list.innerHTML = questions.map((q, i) => `
+            <div class="q-item ${editingId === q.id ? 'active-edit' : ''}" onclick="editQ(${q.id})">
+                <div style="font-size:13px;"><b>${i+1}.</b> ${q.text ? q.text.substring(0, 30) : '(รูปภาพ)'}...</div>
+                <button class="btn" style="background:none; color:red;" onclick="event.stopPropagation(); deleteQ(${q.id})">🗑️</button>
             </div>
         `).join('');
     }
 
+    function deleteQ(id) {
+        if (confirm("ลบข้อนี้ใช่ไหม?")) {
+            questions = questions.filter(x => x.id !== id);
+            saveAndRefresh();
+            if(editingId === id) resetForm();
+        }
+    }
+
+    function importJSON(input) {
+        const file = input.files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+            const data = JSON.parse(e.target.result);
+            if (data.metadata) {
+                document.getElementById('mTitle').value = data.metadata.title;
+                document.getElementById('mCode').value = data.metadata.code;
+                document.getElementById('mTime').value = data.metadata.timeLimit;
+                document.getElementById('mPass').value = data.metadata.passScore;
+                saveMeta();
+            }
+            questions = data.questions || [];
+            saveAndRefresh();
+        };
+        reader.readAsText(file);
+    }
+
     function exportJSON() {
         const package = {
-            metadata: {
-                title: document.getElementById('quizTitle').value || "Untitled Quiz",
-                code: document.getElementById('courseCode').value || "N/A",
-                timeLimit: document.getElementById('timeLimit').value,
-                passScore: document.getElementById('passCriteria').value,
-                createdAt: new Date().toISOString()
-            },
+            metadata: JSON.parse(localStorage.getItem('qex_meta')),
             questions: questions
         };
-
         const blob = new Blob([JSON.stringify(package, null, 2)], {type: "application/json"});
-        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = url;
-        a.download = `QEx-${package.metadata.title}.json`;
+        a.href = URL.createObjectURL(blob);
+        a.download = `QEx-${package.metadata.title || 'Export'}.json`;
         a.click();
+    }
+
+    function clearAllData() {
+        if (confirm("ล้างข้อมูลทั้งหมดที่พิมพ์ค้างไว้ใช่ไหม?")) {
+            localStorage.clear();
+            location.reload();
+        }
     }
 </script>
 </body>
