@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>Q-Exalize Editor - Create Your Quiz</title>
+    <style>
+        :root { --primary: #2196F3; --bg: #e0e0e0; --card: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; flex-direction: column; height: 100vh; }
+        
+        /* UI Window Style */
+        .window { background: var(--card); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; flex: 1; border: 1px solid #ccc; }
+        .title-bar { background: #333; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; cursor: default; }
+        .controls span { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-left: 8px; }
+        
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; overflow-y: auto; }
+        
+        /* Form Style */
+        .editor-pane, .preview-pane { background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .option-item { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+        
+        .image-preview { width: 100%; height: 150px; background: #eee; border: 2px dashed #bbb; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-top: 10px; overflow: hidden; }
+        .image-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        button:hover { filter: brightness(1.2); }
+        .btn-export { background: #4CAF50; width: 100%; margin-top: 20px; font-size: 1.2rem; }
+        
+        .question-list-item { background: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 5px solid var(--primary); display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+
+<div class="window">
+    <div class="title-bar">
+        <span>Q-Exalize Content Creator v1.0</span>
+        <div class="controls">
+            <span style="background: #ff5f56;"></span>
+            <span style="background: #ffbd2e;"></span>
+            <span style="background: #27c93f;"></span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="editor-pane">
+            <h3>📝 เพิ่มโจทย์ใหม่</h3>
+            <div class="input-group">
+                <label>โจทย์ (Text Question)</label>
+                <textarea id="qText" rows="3" placeholder="พิมพ์โจทย์ที่นี่..."></textarea>
+            </div>
+            
+            <div class="input-group">
+                <label>รูปภาพโจทย์ (ถ้ามี)</label>
+                <input type="file" id="qImage" accept="image/*" onchange="previewImage(this)">
+                <div class="image-preview" id="imgBox"><span>ไม่มีรูปภาพ</span></div>
+            </div>
+
+            <div class="input-group">
+                <label>ตัวเลือก (Options)</label>
+                <div class="option-item"><input type="radio" name="correct" value="0" checked> <input type="text" class="opt-text" placeholder="ตัวเลือก 1"></div>
+                <div class="option-item"><input type="radio" name="correct" value="1"> <input type="text" class="opt-text" placeholder="ตัวเลือก 2"></div>
+                <div class="option-item"><input type="radio" name="correct" value="2"> <input type="text" class="opt-text" placeholder="ตัวเลือก 3"></div>
+                <div class="option-item"><input type="radio" name="correct" value="3"> <input type="text" class="opt-text" placeholder="ตัวเลือก 4"></div>
+            </div>
+
+            <button onclick="addQuestion()">➕ เพิ่มข้อสอบลงลิสต์</button>
+        </div>
+
+        <div class="preview-pane">
+            <h3>📋 รายการข้อสอบทั้งหมด (<span id="count">0</span> ข้อ)</h3>
+            <div id="questionList" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;">
+                </div>
+            
+            <hr>
+            <button class="btn-export" onclick="exportJSON()">📥 Export as JSON</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let questions = [];
+    let currentImageBase64 = "";
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                currentImageBase64 = e.target.result;
+                document.getElementById('imgBox').innerHTML = `<img src="${currentImageBase64}">`;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function addQuestion() {
+        const text = document.getElementById('qText').value;
+        const options = Array.from(document.querySelectorAll('.opt-text')).map(input => input.value);
+        const correctIndex = parseInt(document.querySelector('input[name="correct"]:checked').value);
+
+        if(!text && !currentImageBase64) { alert("กรุณาใส่โจทย์หรือรูปภาพด้วยครับ"); return; }
+
+        const qObj = {
+            id: Date.now(),
+            questionText: text,
+            image: currentImageBase64,
+            options: options,
+            correctIndex: correctIndex
+        };
+
+        questions.push(qObj);
+        updateUI();
+        clearForm();
+    }
+
+    function updateUI() {
+        document.getElementById('count').innerText = questions.length;
+        const list = document.getElementById('questionList');
+        list.innerHTML = questions.map((q, index) => `
+            <div class="question-list-item">
+                <span>${index + 1}. ${q.questionText.substring(0, 20)}...</span>
+                <button style="background:red; padding: 2px 8px;" onclick="removeQ(${index})">X</button>
+            </div>
+        `).join('');
+    }
+
+    function removeQ(index) {
+        questions.splice(index, 1);
+        updateUI();
+    }
+
+    function clearForm() {
+        document.getElementById('qText').value = "";
+        document.getElementById('qImage').value = "";
+        document.getElementById('imgBox').innerHTML = "<span>ไม่มีรูปภาพ</span>";
+        currentImageBase64 = "";
+    }
+
+    function exportJSON() {
+        if(questions.length === 0) { alert("ยังไม่มีข้อสอบให้ Export ครับท่าน CEO!"); return; }
+        
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(questions, null, 2));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "quiz_data.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+</script>
+
+</body>
+</html>
