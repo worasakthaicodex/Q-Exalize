@@ -332,20 +332,20 @@
         }
     }
 
-    function importJSON(input) {
+   function importJSON(input) {
         const file = input.files[0];
         if(!file) return;
         const reader = new FileReader();
         reader.onload = e => {
             try {
                 const data = JSON.parse(e.target.result);
-                if (data.course) {
-                    document.getElementById('mTitle').value = data.course.title || "";
-                    document.getElementById('mCode').value = data.course.courseCode || "";
-                    document.getElementById('mTime').value = data.course.timeLimit || 30;
-                    document.getElementById('mPass').value = data.course.passingScore || 60;
-                    saveMeta();
-                }
+                // ดึงข้อมูลวิชาโดยตรงจาก data (ไม่ผ่าน data.course แล้ว)
+                document.getElementById('mTitle').value = data.title || "";
+                document.getElementById('mCode').value = data.courseCode || "";
+                document.getElementById('mTime').value = data.timeLimit || 30;
+                document.getElementById('mPass').value = data.passingScore || 60;
+                saveMeta();
+                
                 questions = data.questions || [];
                 saveAndRefresh();
             } catch(err) {
@@ -356,21 +356,23 @@
         input.value = ""; // รีเซ็ต input file
     }
 
+    // 📍 2. ปรับตอนส่งออก (Export) ให้โครงสร้างเป๊ะตาม Android
     function exportJSON() {
         if(questions.length === 0) return alert("กรุณาเพิ่มข้อสอบอย่างน้อย 1 ข้อก่อนดาวน์โหลดครับ");
         
         const meta = JSON.parse(localStorage.getItem('qex_meta')) || {};
+        
+        // จัดโครงสร้างให้ตรงตาม JSON ฟอร์แมตเป๊ะๆ
         const packageData = {
-            course: {
-                title: meta.title || "วิชาทั่วไป",
-                courseCode: meta.code || "QG001",
-                timeLimit: parseInt(meta.timeLimit) || 30,
-                passingScore: parseInt(meta.passScore) || 60,
-                totalQuestions: questions.length
-            },
+            courseCode: meta.code || "QG001",
+            title: meta.title || "วิชาทั่วไป",
+            description: "นำเข้าจากระบบ Q-Exalize Editor", // ฟิลด์นี้เพิ่มให้ตามโครงสร้างที่บอสส่งมา
+            timeLimit: parseInt(meta.timeLimit) || 30,
+            passingScore: parseInt(meta.passScore) || 15, // เกณฑ์ผ่าน default
             questions: questions
         };
 
+        // Export เป็นไฟล์ JSON
         const blob = new Blob([JSON.stringify(packageData, null, 2)], {type: "application/json"});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
