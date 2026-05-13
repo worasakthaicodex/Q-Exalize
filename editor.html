@@ -3,95 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Q-Exalize Editor v3.0</title>
+    <title>Q-Exalize Editor v3.1 (Pro)</title>
     <style>
-        :root { --primary: #0078d4; --success: #28a745; --bg: #f0f2f5; --card: #ffffff; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        :root { 
+            --primary: #2563eb; 
+            --primary-hover: #1d4ed8;
+            --success: #16a34a; 
+            --success-hover: #15803d;
+            --danger: #dc2626;
+            --bg: #f8fafc; 
+            --card: #ffffff; 
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
         
-        .sidebar { width: 380px; background: #fff; border-right: 1px solid #ddd; display: flex; flex-direction: column; }
-        .main-content { flex: 1; padding: 20px; overflow-y: auto; background: #f8f9fa; }
+        body { 
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main);
+            margin: 0; 
+            display: flex; 
+            height: 100vh; 
+            overflow: hidden; 
+        }
         
-        .card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #e1e4e8; }
-        .header-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 10px; }
+        /* Sidebar Styling */
+        .sidebar { 
+            width: 380px; 
+            background: #fff; 
+            border-right: 1px solid var(--border); 
+            display: flex; 
+            flex-direction: column; 
+            box-shadow: 2px 0 10px rgba(0,0,0,0.03);
+            z-index: 10;
+        }
+        .sidebar-header {
+            padding: 24px; 
+            border-bottom: 1px solid var(--border); 
+            background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+        }
+        .sidebar-header h2 { margin: 0 0 4px 0; color: var(--primary); font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+        .sidebar-header p { margin: 0 0 16px 0; font-size: 12px; color: var(--text-muted); }
+        .btn-group { display: flex; gap: 8px; }
         
-        .input-group { margin-bottom: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: #555; }
-        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; box-sizing: border-box; }
+        /* Main Content Styling */
+        .main-content { 
+            flex: 1; 
+            padding: 30px; 
+            overflow-y: auto; 
+            background: var(--bg); 
+        }
         
-        .option-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; background: #f1f3f4; padding: 6px; border-radius: 6px; }
-        .btn { border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn-primary { background: var(--primary); color: white; width: 100%; }
+        .card { 
+            background: var(--card); 
+            border-radius: 16px; 
+            padding: 24px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); 
+            margin-bottom: 24px; 
+            border: 1px solid rgba(226, 232, 240, 0.8); 
+        }
+        
+        .header-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 16px; }
+        
+        /* Form Controls */
+        .input-group { margin-bottom: 16px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 14px; color: var(--text-main); }
+        input[type="text"], input[type="number"], textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.2s;
+            background: #fdfdfd;
+        }
+        input:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--primary); 
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); 
+            background: #fff;
+        }
+        
+        /* Options Row */
+        .options-container {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .option-row { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-bottom: 12px; 
+            background: #fff; 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border);
+            transition: 0.2s;
+        }
+        .option-row:hover { border-color: #cbd5e1; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .option-row:last-child { margin-bottom: 0; }
+        
+        .opt-text { flex: 1; border: none !important; background: transparent !important; padding: 8px !important; box-shadow: none !important; }
+        .opt-text:focus { outline: none; }
+        
+        /* Buttons */
+        .btn { border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
         .btn-success { background: var(--success); color: white; }
-        .btn-danger { background: #dc3545; color: white; }
+        .btn-success:hover { background: var(--success-hover); transform: translateY(-1px); }
+        .btn-danger { background: #fee2e2; color: var(--danger); }
+        .btn-danger:hover { background: #fecaca; }
+        .btn-export { background: var(--success); color: white; width: 100%; font-size: 16px; padding: 16px; border-radius: 12px; }
+        .btn-export:hover { background: var(--success-hover); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2); }
         
-        .q-item { padding: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
-        .q-item:hover { background: #f0f7ff; }
-        .active-edit { background: #e7f3ff; border-left: 4px solid var(--primary); }
-        .img-preview { width: 100%; height: 100px; border: 2px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .img-preview img { max-width: 100%; max-height: 100%; }
+        /* Question List */
+        .q-item { 
+            padding: 16px 20px; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            cursor: pointer; 
+            transition: 0.2s; 
+            background: #fff;
+        }
+        .q-item:hover { background: #f1f5f9; }
+        .active-edit { background: #eff6ff; border-left: 4px solid var(--primary); }
+        .q-badge {
+            background: var(--primary); color: white; font-size: 12px; font-weight: bold;
+            width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <div style="padding: 20px; border-bottom: 1px solid #eee; background: #fff;">
-        <h2 style="margin:0; color:var(--primary); font-size: 20px;">Q-Exalize Ultimate</h2>
-        <p style="font-size:11px; color:#888;">Auto-Save Enabled | JSON Editor v3.0</p>
-        <div style="margin-top: 10px; display: flex; gap: 5px;">
+    <div class="sidebar-header">
+        <h2>Q-Exalize Pro</h2>
+        <p>JSON Editor v3.1 • Clean UI Edition</p>
+        <div class="btn-group">
             <input type="file" id="importFile" style="display:none" onchange="importJSON(this)" accept=".json">
-            <button class="btn btn-success" style="flex:1; font-size: 12px;" onclick="document.getElementById('importFile').click()">📂 Load JSON</button>
-            <button class="btn btn-danger" style="font-size: 12px;" onclick="clearAllData()">🧹 ล้างทั้งหมด</button>
+            <button class="btn btn-primary" style="flex:1;" onclick="document.getElementById('importFile').click()">📂 นำเข้า JSON</button>
+            <button class="btn btn-danger" onclick="clearAllData()">🧹 ล้าง</button>
         </div>
     </div>
     
     <div id="questionList" style="flex:1; overflow-y:auto;"></div>
 
-    <div style="padding: 20px; border-top: 1px solid #eee;">
-        <button class="btn btn-primary" style="background:#28a745; font-size: 16px;" onclick="exportJSON()">📥 Export JSON Package</button>
+    <div style="padding: 20px; border-top: 1px solid var(--border); background: #fff;">
+        <button class="btn btn-export" onclick="exportJSON()">📥 ดาวน์โหลด JSON (Export)</button>
     </div>
 </div>
 
 <div class="main-content">
     <div class="card">
         <div class="header-grid">
-            <div class="input-group"><label>ชื่อวิชา</label><input type="text" id="mTitle" oninput="saveMeta()"></div>
-            <div class="input-group"><label>รหัส</label><input type="text" id="mCode" oninput="saveMeta()"></div>
-            <div class="input-group"><label>เวลา (นาที)</label><input type="number" id="mTime" oninput="saveMeta()"></div>
-            <div class="input-group"><label>เกณฑ์ (%)</label><input type="number" id="mPass" oninput="saveMeta()"></div>
+            <div class="input-group"><label>📚 ชื่อวิชา</label><input type="text" id="mTitle" placeholder="เช่น คณิตศาสตร์พื้นฐาน" oninput="saveMeta()"></div>
+            <div class="input-group"><label>🏷️ รหัสวิชา</label><input type="text" id="mCode" placeholder="เช่น MATH101" oninput="saveMeta()"></div>
+            <div class="input-group"><label>⏱️ เวลา (นาที)</label><input type="number" id="mTime" placeholder="60" oninput="saveMeta()"></div>
+            <div class="input-group"><label>🎯 เกณฑ์ผ่าน (%)</label><input type="number" id="mPass" placeholder="50" oninput="saveMeta()"></div>
         </div>
     </div>
 
     <div class="card" id="editorSection">
-        <h3 id="formTitle">📝 เพิ่มโจทย์ใหม่</h3>
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
-            <div>
-                <div class="input-group"><label>โจทย์</label><textarea id="qText" rows="3"></textarea></div>
-                <div class="input-group"><label>คำเฉลย (Explanation)</label><textarea id="qExplan" rows="2"></textarea></div>
+        <h3 id="formTitle" style="margin-top:0; color: var(--primary); font-size: 18px; border-bottom: 2px solid #eff6ff; padding-bottom: 12px; margin-bottom: 20px;">
+            📝 เพิ่มโจทย์ใหม่
+        </h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="input-group">
+                <label>คำถาม / โจทย์</label>
+                <textarea id="qText" rows="3" placeholder="พิมพ์คำถามของคุณที่นี่..."></textarea>
             </div>
-            <div>
-                <div class="input-group"><label>รูปภาพ (Link URL หรือเลือกไฟล์)</label>
-                    <input type="text" id="qImgUrl" placeholder="https://..." oninput="updateImgPreview()">
-                    <input type="file" id="qFile" style="margin-top:5px; font-size:10px;" onchange="handleFile(this)">
-                </div>
-                <div class="img-preview" id="imgBox"><span>ไม่มีรูป</span></div>
+            <div class="input-group">
+                <label>💡 คำอธิบายเฉลย (แสดงหลังจากตอบคำถาม)</label>
+                <textarea id="qExplan" rows="2" placeholder="อธิบายเหตุผลว่าทำไมถึงตอบข้อนี้..."></textarea>
             </div>
         </div>
 
-        <div id="optionsArea">
-            <label>5 ตัวเลือก (จุดกลม = ข้อถูก | ติ๊กถูก = ข้อใกล้เคียง)</label>
+        <div class="options-container">
+            <label style="margin-bottom: 12px; display: flex; justify-content: space-between;">
+                <span>ตัวเลือกคำตอบ (ตัวแรเงา)</span>
+                <span style="font-size: 12px; color: var(--text-muted); font-weight: normal;">🔘 วงกลม = ข้อถูก | ☑️ สี่เหลี่ยม = ข้อใกล้เคียง (หลอก)</span>
+            </label>
             <script>
                 for(let i=0; i<5; i++) document.write(`
                     <div class="option-row">
-                        <input type="radio" name="correct" value="${i}" ${i==0?'checked':''}>
-                        <input type="text" class="opt-text" placeholder="ตัวเลือกที่ ${i+1}">
-                        <input type="checkbox" class="near-check" title="ข้อใกล้เคียง">
+                        <input type="radio" name="correct" value="${i}" ${i==0?'checked':''} title="เลือกเป็นข้อที่ถูก">
+                        <input type="text" class="opt-text" placeholder="พิมพ์ตัวเลือกที่ ${i+1}">
+                        <input type="checkbox" class="near-check" title="เลือกเป็นข้อใกล้เคียง">
                     </div>
                 `);
             </script>
         </div>
-        <div style="margin-top: 15px; display: flex; gap: 10px;">
-            <button class="btn btn-primary" id="addBtn" onclick="addOrUpdateQ()">➕ บันทึกข้อมูล</button>
-            <button class="btn" id="cancelBtn" style="display:none; background:#888; color:#white;" onclick="resetForm()">ยกเลิก</button>
+        
+        <div style="display: flex; gap: 12px;">
+            <button class="btn btn-primary" id="addBtn" style="flex:1; padding: 14px;" onclick="addOrUpdateQ()">➕ บันทึกข้อสอบนี้</button>
+            <button class="btn" id="cancelBtn" style="display:none; background:#e2e8f0; color:var(--text-main);" onclick="resetForm()">ยกเลิกการแก้ไข</button>
         </div>
     </div>
 </div>
@@ -99,9 +214,7 @@
 <script>
     let questions = [];
     let editingId = null;
-    let currentImgBase64 = "";
 
-    // 1. Load Data on Startup
     window.onload = () => {
         const savedMeta = JSON.parse(localStorage.getItem('qex_meta') || '{}');
         document.getElementById('mTitle').value = savedMeta.title || "";
@@ -117,53 +230,34 @@
         const meta = {
             title: document.getElementById('mTitle').value,
             code: document.getElementById('mCode').value,
-            timeLimit: document.getElementById('mTime').value,
-            passScore: document.getElementById('mPass').value
+            timeLimit: parseInt(document.getElementById('mTime').value) || 0,
+            passScore: parseInt(document.getElementById('mPass').value) || 0
         };
         localStorage.setItem('qex_meta', JSON.stringify(meta));
     }
 
-    function handleFile(input) {
-        if (input.files[0]) {
-            let r = new FileReader();
-            r.onload = e => {
-                currentImgBase64 = e.target.result;
-                document.getElementById('qImgUrl').value = ""; // ล้างลิงก์ถ้าเลือกไฟล์
-                updateImgPreview();
-            };
-            r.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function updateImgPreview() {
-        const url = document.getElementById('qImgUrl').value;
-        const box = document.getElementById('imgBox');
-        if (url) {
-            box.innerHTML = `<img src="${url}">`;
-            currentImgBase64 = "";
-        } else if (currentImgBase64) {
-            box.innerHTML = `<img src="${currentImgBase64}">`;
-        } else {
-            box.innerHTML = "<span>ไม่มีรูป</span>";
-        }
-    }
-
     function addOrUpdateQ() {
         const text = document.getElementById('qText').value;
-        if (!text && !currentImgBase64 && !document.getElementById('qImgUrl').value) return alert("ใส่โจทย์หรือรูปด้วยครับ");
+        if (!text) return alert("⚠️ กรุณาพิมพ์โจทย์คำถามด้วยครับ");
 
+        // หาข้อใกล้เคียง
+        const nearMissArray = Array.from(document.querySelectorAll('.near-check'))
+            .map((c, i) => c.checked ? i : -1)
+            .filter(i => i !== -1);
+        
         const qData = {
-            id: editingId || Date.now(),
+            qid: editingId || Date.now(), // ใช้ qid เพื่อให้ตรงกับแอป
             text: text,
-            image: document.getElementById('qImgUrl').value || currentImgBase64,
-            explanation: document.getElementById('qExplan').value,
-            options: Array.from(document.querySelectorAll('.opt-text')).map(i => i.value),
+            image: "", // ค่าว่างเสมอ ป้องกันแอปเด้ง
+            options: Array.from(document.querySelectorAll('.opt-text')).map(i => i.value || ""),
             correctIndex: parseInt(document.querySelector('input[name="correct"]:checked').value),
-            nearMiss: Array.from(document.querySelectorAll('.near-check')).map((c, i) => c.checked ? i : -1).filter(i => i !== -1)
+            closeIndex: nearMissArray.length > 0 ? nearMissArray[0] : null,
+            chapter: document.getElementById('mTitle').value || "General",
+            explanation: document.getElementById('qExplan').value || ""
         };
 
         if (editingId) {
-            const idx = questions.findIndex(x => x.id === editingId);
+            const idx = questions.findIndex(x => x.qid === editingId);
             questions[idx] = qData;
         } else {
             questions.push(qData);
@@ -174,39 +268,34 @@
     }
 
     function editQ(id) {
-        const q = questions.find(x => x.id === id);
+        const q = questions.find(x => x.qid === id);
         editingId = id;
-        document.getElementById('formTitle').innerText = "Edit Question / แก้ไขโจทย์";
+        document.getElementById('formTitle').innerHTML = "✏️ แก้ไขโจทย์";
         document.getElementById('qText').value = q.text;
         document.getElementById('qExplan').value = q.explanation;
-        document.getElementById('qImgUrl').value = q.image.startsWith('data:') ? "" : q.image;
-        currentImgBase64 = q.image.startsWith('data:') ? q.image : "";
         
         const optInputs = document.querySelectorAll('.opt-text');
         const nearChecks = document.querySelectorAll('.near-check');
         q.options.forEach((val, i) => optInputs[i].value = val);
         document.querySelector(`input[name="correct"][value="${q.correctIndex}"]`).checked = true;
-        nearChecks.forEach((c, i) => c.checked = q.nearMiss.includes(i));
         
-        document.getElementById('cancelBtn').style.display = "inline-block";
-        document.getElementById('addBtn').innerText = "💾 อัปเดตข้อมูล";
-        updateImgPreview();
+        nearChecks.forEach((c, i) => c.checked = (q.closeIndex === i));
+        
+        document.getElementById('cancelBtn').style.display = "inline-flex";
+        document.getElementById('addBtn').innerHTML = "💾 อัปเดตข้อสอบนี้";
         updateUI();
     }
 
     function resetForm() {
         editingId = null;
-        document.getElementById('formTitle').innerText = "📝 เพิ่มโจทย์ใหม่";
+        document.getElementById('formTitle').innerHTML = "📝 เพิ่มโจทย์ใหม่";
         document.getElementById('qText').value = "";
         document.getElementById('qExplan').value = "";
-        document.getElementById('qImgUrl').value = "";
-        document.getElementById('qFile').value = "";
-        currentImgBase64 = "";
         document.querySelectorAll('.opt-text').forEach(i => i.value = "");
         document.querySelectorAll('.near-check').forEach(i => i.checked = false);
+        document.querySelector('input[name="correct"][value="0"]').checked = true;
         document.getElementById('cancelBtn').style.display = "none";
-        document.getElementById('addBtn').innerText = "➕ บันทึกข้อมูล";
-        updateImgPreview();
+        document.getElementById('addBtn').innerHTML = "➕ บันทึกข้อสอบนี้";
         updateUI();
     }
 
@@ -217,17 +306,27 @@
 
     function updateUI() {
         const list = document.getElementById('questionList');
+        if(questions.length === 0) {
+            list.innerHTML = `<div style="padding: 30px; text-align: center; color: var(--text-muted); font-size: 14px;">ยังไม่มีข้อสอบ<br>เพิ่มข้อสอบทางด้านขวาเลยครับ!</div>`;
+            return;
+        }
+
         list.innerHTML = questions.map((q, i) => `
-            <div class="q-item ${editingId === q.id ? 'active-edit' : ''}" onclick="editQ(${q.id})">
-                <div style="font-size:13px;"><b>${i+1}.</b> ${q.text ? q.text.substring(0, 30) : '(รูปภาพ)'}...</div>
-                <button class="btn" style="background:none; color:red;" onclick="event.stopPropagation(); deleteQ(${q.id})">🗑️</button>
+            <div class="q-item ${editingId === q.qid ? 'active-edit' : ''}" onclick="editQ(${q.qid})">
+                <div style="display: flex; align-items: flex-start; flex: 1;">
+                    <div class="q-badge">${i+1}</div>
+                    <div style="font-size:14px; line-height: 1.4; color: var(--text-main); padding-top: 2px;">
+                        ${q.text.substring(0, 50)}${q.text.length > 50 ? '...' : ''}
+                    </div>
+                </div>
+                <button class="btn" style="background:transparent; color:#ef4444; padding: 4px 8px; margin-left: 8px;" onclick="event.stopPropagation(); deleteQ(${q.qid})">🗑️</button>
             </div>
         `).join('');
     }
 
     function deleteQ(id) {
-        if (confirm("ลบข้อนี้ใช่ไหม?")) {
-            questions = questions.filter(x => x.id !== id);
+        if (confirm("คุณแน่ใจหรือไม่ว่าต้องการลบข้อนี้?")) {
+            questions = questions.filter(x => x.qid !== id);
             saveAndRefresh();
             if(editingId === id) resetForm();
         }
@@ -235,36 +334,52 @@
 
     function importJSON(input) {
         const file = input.files[0];
+        if(!file) return;
         const reader = new FileReader();
         reader.onload = e => {
-            const data = JSON.parse(e.target.result);
-            if (data.metadata) {
-                document.getElementById('mTitle').value = data.metadata.title;
-                document.getElementById('mCode').value = data.metadata.code;
-                document.getElementById('mTime').value = data.metadata.timeLimit;
-                document.getElementById('mPass').value = data.metadata.passScore;
-                saveMeta();
+            try {
+                const data = JSON.parse(e.target.result);
+                if (data.course) {
+                    document.getElementById('mTitle').value = data.course.title || "";
+                    document.getElementById('mCode').value = data.course.courseCode || "";
+                    document.getElementById('mTime').value = data.course.timeLimit || 30;
+                    document.getElementById('mPass').value = data.course.passingScore || 60;
+                    saveMeta();
+                }
+                questions = data.questions || [];
+                saveAndRefresh();
+            } catch(err) {
+                alert("ไฟล์ JSON ไม่ถูกต้องครับ!");
             }
-            questions = data.questions || [];
-            saveAndRefresh();
         };
         reader.readAsText(file);
+        input.value = ""; // รีเซ็ต input file
     }
 
     function exportJSON() {
-        const package = {
-            metadata: JSON.parse(localStorage.getItem('qex_meta')),
+        if(questions.length === 0) return alert("กรุณาเพิ่มข้อสอบอย่างน้อย 1 ข้อก่อนดาวน์โหลดครับ");
+        
+        const meta = JSON.parse(localStorage.getItem('qex_meta')) || {};
+        const packageData = {
+            course: {
+                title: meta.title || "วิชาทั่วไป",
+                courseCode: meta.code || "QG001",
+                timeLimit: parseInt(meta.timeLimit) || 30,
+                passingScore: parseInt(meta.passScore) || 60,
+                totalQuestions: questions.length
+            },
             questions: questions
         };
-        const blob = new Blob([JSON.stringify(package, null, 2)], {type: "application/json"});
+
+        const blob = new Blob([JSON.stringify(packageData, null, 2)], {type: "application/json"});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = `QEx-${package.metadata.title || 'Export'}.json`;
+        a.download = `QEx-${meta.title || 'Course'}.json`;
         a.click();
     }
 
     function clearAllData() {
-        if (confirm("ล้างข้อมูลทั้งหมดที่พิมพ์ค้างไว้ใช่ไหม?")) {
+        if (confirm("⚠️ คำเตือน: คุณต้องการล้างข้อมูลทั้งหมดที่พิมพ์ค้างไว้ใช่ไหม? (ไม่สามารถกู้คืนได้)")) {
             localStorage.clear();
             location.reload();
         }
