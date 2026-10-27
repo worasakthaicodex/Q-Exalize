@@ -1,0 +1,283 @@
+<resources>
+    <string name="skillsknowledge">Test your skills and knowledge</string>
+    <string name="app_name">Q-Growth</string>
+    <string name="app_settings">App Settings</string>
+    <string name="take_a_quiz">Take a Quiz</string>
+    <string name="StartNow">Start Now</string>
+    <string name="CreateQuiz">Create Quiz</string>
+    <string name="Addnewquestions">Add new questions</string>
+    <string name="History">History</string>
+    <string name="Viewpastresults">View past results</string>
+    <string name="Readytolearn">Ready to learn?</string>
+    <string name="hello_user">Hello %s</string>
+    <string name="Dashboard">Dashboard</string>
+    <string name="liketodotoday">What would you like to do today?</string>
+    <string name="SelectCategory">Select Category</string>
+    <string name="clear_data_success">All data cleared successfully</string>
+    <string name="error_no_questions">This course has no questions yet.\nPlease add questions before taking the quiz.</string>
+    <string name="error_course_not_found">Course information not found in the system.</string>
+    <string name="online_arena_title">Online Arena</string>
+    <string name="online_arena_subtitle">Play with others now</string>
+    <string name="empty_category_message">No categories yet\nTap the + button to create a new one!</string>
+    <string name="quiz_overview">Quiz Overview</string>
+    <string name="close_dashboard">Close Dashboard</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_submit">Submit</string>
+    <string name="quiz_in_progress">Quiz in progress</string>
+    <string name="quiz_question_number">Question %1$d / %2$d</string>
+    <string name="time_spent_only">Time spent: %1$d seconds</string>
+    <string name="time_spent_with_limit">Time spent: %1$d seconds (should finish in %2$d s)</string>
+    <string name="unanswered_warning">⚠️ There are %1$d unanswered questions</string>
+    <string name="flagged_count">🚩 There are %1$d flagged questions</string>
+    <string name="dialog_confirm_submit_title">Confirm submission?</string>
+    <string name="dialog_confirm_submit_desc">Do you want to submit your answers and end the exam?</string>
+    <string name="btn_submit_answers">Submit Answers</string>
+    <string name="btn_continue_quiz">Continue Quiz</string>
+    <string name="title_new_category">NEW CATEGORY</string>
+    <string name="title_edit_category">EDIT CATEGORY</string>
+    <string name="label_category_name">Category Name</string>
+    <string name="placeholder_category_name">e.g., General Science</string>
+    <string name="label_description">Description</string>
+    <string name="placeholder_description">Describe this category...</string>
+
+    <string name="title_edit_course">Edit Course</string>
+    <string name="header_basic_info">Basic Information</string>
+    <string name="label_course_name">Course Name</string>
+    <string name="header_quiz_settings">Exam Settings</string>
+    <string name="label_time_limit">Duration (Minutes)</string>
+    <string name="label_questions_to_use">Random Questions (Items)</string>
+    <string name="toggle_shuffle">Shuffle options (A,B,C,D)</string>
+    <string name="toggle_allow_review">Allow review after exam</string>
+    <string name="toggle_allow_retry">Allow retry (Re-exam)</string>
+    <string name="header_grading">Grading Criteria</string>
+    <string name="grading_hint">* Reach %1$s%% for Grade H, %2$s%% for Grade S</string>
+    <string name="header_anti_cheat">Anti-Cheat System</string>
+    <string name="toggle_anti_cheat">App-Switch Protection</string>
+    <string name="toggle_screenshot">Screenshot Protection</string>
+    <string name="header_summary">Question Summary</string>
+    <string name="total_bank">Question Bank: %1$d items</string>
+    <string name="random_setting">Randomization set: %1$s items</string>
+    <string name="unit_items">%1$d items</string>
+    <string name="btn_save_all">Save All Settings</string>
+
+    <string name="title_stats_history">Statistics and Exam History</string>
+    <string name="tab_stats">Stats</string>
+    <string name="tab_local">Local History</string>
+    <string name="tab_online">Online</string>
+    <string name="header_overview_stats">Exam Overview</string>
+    <string name="card_pass_rate">Passed</string>
+    <string name="card_completion_rate">Completed</string>
+    <string name="card_on_time_rate">On Time</string>
+    <string name="header_radar_analysis">Skill Analysis Radar</string>
+    <string name="empty_history_message">Empty history message</string>
+    <string name="stat_knowledge">Knowledge</string>
+    <string name="stat_time">Time</string>
+    <string name="stat_analysis">Analysis</string>
+    <string name="stat_growth">Growth</string>
+    <string name="stat_diligence">Diligence</string>
+    <string name="online_ranking_pro">Online Ranking System (Pro Version Only)</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="empty_notifications">No notifications yet</string>
+    <string name="error_read_file">❌ Could not read file: %1$s</string>
+
+
+    <string name="title_import_quiz">IMPORT QUIZ SYSTEM</string>
+    <string name="header_import_mode">IMPORT MODE</string>
+    <string name="btn_mode_new">NEW COURSE</string>
+    <string name="btn_mode_existing">EXISTING</string>
+    <string name="header_select_target">SELECT TARGET COURSE</string>
+    <string name="header_upload_json">UPLOAD JSON FILE</string>
+    <string name="placeholder_select_file">Select .json file from device</string>
+    <string name="label_file_name">File: %1$s</string>
+    <string name="msg_success_import">✅ Data imported successfully!</string>
+    <string name="btn_process_import">PROCESS &amp; IMPORT DATA</string>
+
+    <!-- Error Messages -->
+    <string name="err_free_limit">❌ Free user limit: Max 3 courses. Please delete existing ones or unlock Premium.</string>
+    <string name="err_no_file">❌ Please select a file first</string>
+    <string name="err_no_target">❌ Please select a target course</string>
+    <string name="err_code_mismatch">❌ Course code mismatch! (In file: %1$s)</string>
+    <string name="err_json_invalid">❌ JSON Error: Please check the file format</string>
+    <string name="label_select_course">Select Course</string>
+    <string name="msg_no_data">No data available</string>
+
+    <string name="dialog_delete_course_title">Confirm Delete Course</string>
+    <string name="dialog_delete_course_desc">Do you want to delete \"%1$s\"?\nAll data and exam history for this course will be permanently lost.</string>
+    <string name="btn_confirm_delete">Delete</string>
+    <string name="btn_cancel">Cancel</string>
+
+        <string name="title_quiz_result">Exam Results</string>
+        <string name="label_course_code_display">Course Code: %1$s</string>
+        <string name="label_score_unit">score</string>
+        <string name="msg_congrats">Congratulations!\nYou got Grade </string>
+        <string name="msg_dont_give_up">Don\'t give up!\nYou got Grade </string>
+        <string name="msg_with_score"> with </string>
+        <string name="stat_correct_answers">Correct Answers</string>
+        <string name="stat_wrong_answers">Wrong Answers</string>
+        <string name="stat_passing_target">Passing Target (S)</string>
+        <string name="stat_accuracy_rate">Accuracy Rate</string>
+        <string name="btn_check_answers_label">Check Answers</string>
+        <string name="btn_check_answers_restricted">Answers Restricted</string>
+        <string name="btn_try_again">Try Quiz Again</string>
+        <string name="btn_retry_not_allowed">Retry Not Allowed</string>
+        <string name="footer_finished">Finished?</string>
+        <string name="footer_back_to_list">Back to course list</string>
+        <string name="btn_go">Go</string>
+
+    <string name="title_review_quiz">Review &amp; Explanation</string>
+    <string name="label_question_number">Question %1$d</string>
+    <string name="label_explanation">Explanation:</string>
+    <string name="hint_close_answer">💡 Almost correct! You were on the right track, but there was a small catch.</string>
+
+    <string name="title_course_details">Course Details</string>
+    <string name="default_course_desc">Check your readiness before starting the exam.</string>
+    <string name="label_course_code_brief">Course Code: %1$s</string>
+    <string name="label_questions_count">Total Questions: %1$d items</string>
+    <string name="label_total_time_header">Total Time</string>
+    <string name="label_passing_criteria">Passing Target (S)</string>
+    <string name="header_security_rules">Security &amp; Rules:</string>
+    <string name="rule_auto_submit">If the time limit is reached, the system will "Auto-Submit" immediately.</string>
+    <string name="rule_no_retry_allowed">Retry not allowed (You have only one attempt for this exam).</string>
+    <string name="rule_anti_cheat_active">Do not switch screens or open other apps, or you will be disqualified immediately.</string>
+    <string name="rule_prevent_screenshot">Screenshots or screen recordings are strictly prohibited.</string>
+    <string name="header_instructions">Instructions:</string>
+    <string name="instruction_body">Please check your internet connection and battery before starting. If any issues occur, contact the administrator immediately.</string>
+    <string name="unit_min_brief">min</string>
+    <string name="btn_start_quiz">Start Quiz</string>
+    <string name="status_restricted">Restricted</string>
+    <string name="dialog_delete_category_title">Delete Category</string>
+    <string name="dialog_delete_category_desc">Are you sure you want to delete \'%1$s\'? This action cannot be undone.</string>
+    <string name="btn_delete">Delete</string>
+    <string name="anticheat_title">Screen Switching Detected!</string>
+    <string name="anticheat_desc">Because you exited the app or switched screens during the exam, this session is suspended and recorded as 0 points immediately.</string>
+    <string name="anticheat_btn">Acknowledge and Submit 0 Score</string>
+
+    <!-- Pro Gate Dialog -->
+    <string name="pro_gate_title">Pro Feature</string>
+    <string name="pro_gate_desc">This feature is available in the Pro version only.\nUpgrade to unlock all features.</string>
+    <string name="pro_gate_btn">Got it</string>
+
+    <!-- Home Screen – Mini Apps Section -->
+    <string name="mini_apps_section_title">Supplementary Applications</string>
+    <string name="mini_app_schedule">Schedule</string>
+    <string name="mini_app_qr_scanner">QR Scanner</string>
+    <string name="mini_app_classroom">Classroom</string>
+    <string name="mini_app_grade_manager">Grade Manager</string>
+    <string name="mini_app_submit_work">Submit Work</string>
+    <string name="mini_app_attendance">Attendance</string>
+    <string name="mini_app_open_files">Open Files</string>
+    <string name="mini_app_history">History</string>
+    <string name="home_game_banner_btn">▶  Play Educational Game</string>
+
+    <!-- ===== B. Classroom System ===== -->
+
+    <!-- Classroom Hub -->
+    <string name="classroom_not_connected">Not connected to server.\nGo to Settings → Connect Server first.</string>
+    <string name="classroom_go_to_settings">Go to Settings</string>
+    <string name="classroom_room_label">Room</string>
+    <string name="classroom_teacher_label">Teacher</string>
+    <string name="classroom_loading">Loading…</string>
+    <string name="classroom_error">Failed to load data</string>
+    <string name="classroom_retry">Retry</string>
+    <string name="classroom_feature_schedule">Schedule</string>
+    <string name="classroom_feature_homework">Submit Work</string>
+    <string name="classroom_feature_attendance">Attendance</string>
+    <string name="classroom_feature_grades">Grades</string>
+    <string name="classroom_feature_files">Open Files</string>
+    <string name="classroom_feature_arena">Online Arena</string>
+
+    <!-- QR Join -->
+    <string name="qr_title">QR Join Room</string>
+    <string name="qr_scan_hint">Scan the QR code from your teacher, or enter Room ID manually.</string>
+    <string name="qr_enter_manually">Enter Room ID</string>
+    <string name="qr_join_btn">Join Classroom</string>
+    <string name="qr_join_success">Joined room successfully!</string>
+    <string name="qr_invalid_code">Invalid Room ID</string>
+    <string name="qr_placeholder">e.g. ABC123</string>
+    <string name="qr_room_id_label">Room ID</string>
+    <string name="qr_connected_room">Connected Room</string>
+    <string name="qr_change_room">Change Room</string>
+
+    <!-- Schedule / Calendar -->
+    <string name="schedule_title">Schedule</string>
+    <string name="schedule_subtitle">Calendar &amp; Events</string>
+    <string name="schedule_no_events">No events this month</string>
+    <string name="schedule_set_reminder">Set Reminder</string>
+    <string name="schedule_reminder_set">Reminder set ✓</string>
+    <string name="schedule_type_event">Event</string>
+    <string name="schedule_type_exam">Exam</string>
+    <string name="schedule_type_homework">Assignment</string>
+    <string name="schedule_type_holiday">Holiday</string>
+    <string name="schedule_event_desc_label">Description</string>
+    <string name="schedule_today_events">Today\'s Events</string>
+    <string name="schedule_upcoming">Upcoming</string>
+
+    <!-- Homework / Submit Work -->
+    <string name="homework_title">Submit Work</string>
+    <string name="homework_subtitle">Assignments</string>
+    <string name="homework_no_assignments">No assignments</string>
+    <string name="homework_due_label">Due:</string>
+    <string name="homework_status_pending">⏳ Pending</string>
+    <string name="homework_status_submitted">✅ Submitted</string>
+    <string name="homework_status_late">⚠️ Overdue</string>
+    <string name="homework_mark_done">Mark as Done</string>
+    <string name="homework_set_reminder">Remind before due</string>
+    <string name="homework_reminder_set">Reminder set ✓</string>
+    <string name="homework_file_attached">Attachment:</string>
+    <string name="homework_open_file">Open File</string>
+
+    <!-- Attendance -->
+    <string name="attendance_title">Attendance</string>
+    <string name="attendance_subtitle">Check-in Record</string>
+    <string name="attendance_no_records">No attendance records yet</string>
+    <string name="attendance_present">Present</string>
+    <string name="attendance_absent">Absent</string>
+    <string name="attendance_late">Late</string>
+    <string name="attendance_today">Today:</string>
+    <string name="attendance_month_summary">This Month</string>
+    <string name="attendance_days_present">Present</string>
+    <string name="attendance_days_absent">Absent</string>
+    <string name="attendance_days_late">Late</string>
+    <string name="attendance_set_reminder">Morning Reminder</string>
+    <string name="attendance_reminder_set">Morning reminder set ✓</string>
+    <string name="attendance_reminder_desc">Get notified every morning at class time</string>
+
+    <!-- Grade Manager -->
+    <string name="grades_title">Grade Manager</string>
+    <string name="grades_subtitle">Score Records</string>
+    <string name="grades_no_records">No grade records yet</string>
+    <string name="grades_subject_label">Subject</string>
+    <string name="grades_score_label">Score</string>
+    <string name="grades_max_score_label">Max Score</string>
+    <string name="grades_date_label">Date</string>
+    <string name="grades_note_label">Note</string>
+    <string name="grades_average">Average</string>
+    <string name="grades_highest">Highest</string>
+    <string name="grades_lowest">Lowest</string>
+    <string name="grades_summary">Summary</string>
+
+    <!-- Files / PDF -->
+    <string name="files_title">Open Files (PDF)</string>
+    <string name="files_subtitle">Class Materials</string>
+    <string name="files_no_files">No files uploaded yet</string>
+    <string name="files_open_btn">Open</string>
+    <string name="files_download_btn">Download</string>
+    <string name="files_size_label">Size:</string>
+    <string name="files_uploaded_label">Uploaded:</string>
+    <string name="files_opening">Opening file…</string>
+    <string name="files_error_open">Cannot open this file</string>
+
+    <!-- Notification / Reminder -->
+    <string name="notify_before_label">Notify before</string>
+    <string name="notify_5min">5 minutes</string>
+    <string name="notify_15min">15 minutes</string>
+    <string name="notify_30min">30 minutes</string>
+    <string name="notify_1hour">1 hour</string>
+    <string name="notify_1day">1 day</string>
+    <string name="notify_channel_name">Q-Growth Reminders</string>
+    <string name="notify_channel_desc">Class schedule and assignment reminders</string>
+    <string name="notify_permission_rationale">Allow notifications to receive class reminders and assignment alerts.</string>
+</resources>
+
+

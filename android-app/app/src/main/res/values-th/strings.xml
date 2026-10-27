@@ -1,0 +1,286 @@
+<resources>
+    <string name="app_settings">ตั้งค่าแอปพลิเคชัน</string>
+    <string name="take_a_quiz">ทำเเบบทดสอบ</string>
+    <string name="skillsknowledge">ทดสอบความรู้ของคุณ</string>
+    <string name="StartNow">เริ่ม</string>
+    <string name="app_name">Q-Growth</string>
+    <string name="CreateQuiz">เเบบทดสอบใหม่</string>
+    <string name="Addnewquestions">สร้างเเบบทดสอบ</string>
+    <string name="History">ประวัติ</string>
+    <string name="Viewpastresults">ประวัติการทดสอบ</string>
+    <string name="Readytolearn">พร้อมเรียนหรือยัง</string>
+    <string name="hello_user">สวัสดี %s</string>
+    <string name="Dashboard">หน้าเเรก</string>
+    <string name="liketodotoday">วันนี้คุณอยากทำอะไร?</string>
+    <string name="SelectCategory">เลือกหมวดหมู่</string>
+    <string name="clear_data_success">ล้างข้อมูลทั้งหมดเรียบร้อยแล้ว</string>
+    <string name="error_no_questions">วิชานี้ยังไม่มีข้อสอบ\nกรุณาเพิ่มข้อสอบก่อนทำแบบทดสอบ</string>
+    <string name="error_course_not_found">ไม่พบข้อมูลวิชาในระบบ</string>
+    <string name="quiz_overview">ภาพรวมข้อสอบ</string>
+    <string name="online_arena_title">สนามสอบออนไลน์</string>
+    <string name="online_arena_subtitle">เข้าเล่นร่วมกับผู้อื่นตอนนี้</string>
+    <string name="empty_category_message">ยังไม่มีหมวดหมู่\nกดปุ่ม + เพื่อสร้างใหม่ได้เลย!</string>
+    <string name="close_dashboard">ปิดแผงควบคุม</string>
+    <string name="btn_back">ย้อนกลับ</string>
+    <string name="btn_next">ถัดไป</string>
+    <string name="btn_submit">ส่งข้อสอบ</string>
+    <string name="quiz_in_progress">การสอบกำลังดำเนินการ</string>
+    <string name="quiz_question_number">ข้อที่ %1$d / %2$d</string>
+    <string name="time_spent_only">ใช้เวลาไปแล้ว: %1$d วินาที</string>
+    <string name="time_spent_with_limit">ใช้เวลาไปแล้ว: %1$d วินาที (ควรทำใน %2$d วิ)</string>
+    <string name="unanswered_warning">⚠️ มีข้อที่ยังไม่ได้ทำอีก %1$d ข้อ</string>
+    <string name="flagged_count">🚩 มีข้อที่ปักธงไว้ %1$d ข้อ</string>
+    <string name="dialog_confirm_submit_title">ยืนยันการส่งข้อสอบ?</string>
+    <string name="dialog_confirm_submit_desc">คุณต้องการส่งคำตอบและสิ้นสุดการสอบใช่หรือไม่?</string>
+    <string name="btn_submit_answers">ส่งคำตอบ</string>
+    <string name="btn_continue_quiz">กลับไปทำต่อ</string>
+    <string name="title_new_category">สร้างหมวดหมู่ใหม่</string>
+    <string name="title_edit_category">แก้ไขหมวดหมู่</string>
+    <string name="label_category_name">ชื่อหมวดหมู่</string>
+    <string name="placeholder_category_name">เช่น กฎหมายแพ่ง</string>
+    <string name="label_description">รายละเอียด (Description)</string>
+    <string name="placeholder_description">อธิบายเกี่ยวกับหมวดหมู่นี้...</string>
+
+
+        <!-- Edit Course Screen -->
+        <string name="title_edit_course">แก้ไขรายวิชา</string>
+        <string name="header_basic_info">ข้อมูลพื้นฐาน</string>
+        <string name="label_course_name">ชื่อวิชา</string>
+        <string name="header_quiz_settings">การตั้งค่าข้อสอบ</string>
+        <string name="label_time_limit">เวลาในการทำข้อสอบ (นาที)</string>
+        <string name="label_questions_to_use">จำนวนข้อที่จะใช้สุ่มสอบ (ข้อ)</string>
+        <string name="toggle_shuffle">สลับตำแหน่งตัวเลือก (A,B,C,D)</string>
+        <string name="toggle_allow_review">ดูเฉลยได้หลังสอบเสร็จ</string>
+        <string name="toggle_allow_retry">ส่งแล้วสอบใหม่ได้ (Retry)</string>
+        <string name="header_grading">การตัดเกรด</string>
+        <string name="grading_hint">* คะแนนถึง %1$s%% ได้เกรด H, ถึง %2$s%% ได้เกรด S</string>
+        <string name="header_anti_cheat">ระบบป้องกันการทุจริต</string>
+        <string name="toggle_anti_cheat">ป้องกันการสลับแอป (Anti-Cheat)</string>
+        <string name="toggle_screenshot">ป้องกันการบันทึกหน้าจอ (Screenshot)</string>
+        <string name="header_summary">สรุปจำนวนข้อสอบในระบบ</string>
+        <string name="total_bank">คลังข้อสอบทั้งหมด: %1$d ข้อ</string>
+        <string name="random_setting">ตั้งค่าสุ่มใช้สอบจริง: %1$s ข้อ</string>
+        <string name="unit_items">%1$d ข้อ</string>
+        <string name="btn_save_all">บันทึกการตั้งค่าทั้งหมด</string>
+    <string name="title_stats_history">สถิติและประวัติการสอบ</string>
+    <string name="tab_stats">ความสามารถ</string>
+    <string name="tab_local">ประวัติในเครื่อง</string>
+    <string name="tab_online">ออนไลน์</string>
+    <string name="header_overview_stats">สรุปภาพรวมการสอบ</string>
+    <string name="card_pass_rate">สอบผ่าน</string>
+    <string name="card_completion_rate">ทำครบ</string>
+    <string name="card_on_time_rate">ทันเวลา</string>
+    <string name="header_radar_analysis">เรดาร์วิเคราะห์ความสามารถ</string>
+    <string name="empty_history_message">ยังไม่มีประวัติการทำข้อสอบ</string>
+    <string name="stat_knowledge">ความรู้</string>
+    <string name="stat_time">เวลา</string>
+    <string name="stat_analysis">วิเคราะห์</string>
+    <string name="stat_growth">พัฒนา</string>
+    <string name="stat_diligence">ขยัน</string>
+    <string name="online_ranking_pro">ระบบจัดลำดับออนไลน์ (เฉพาะเวอร์ชั่น Pro)</string>
+    <string name="title_notifications">การแจ้งเตือน</string>
+    <string name="empty_notifications">ไม่มีการแจ้งเตือน</string>
+    <string name="error_read_file">❌ ไม่สามารถอ่านไฟล์ได้: %1$s</string>
+
+
+    <string name="title_import_quiz">ระบบนำเข้าข้อสอบ</string>
+    <string name="header_import_mode">โหมดการนำเข้า</string>
+    <string name="btn_mode_new">วิชาใหม่</string>
+    <string name="btn_mode_existing">วิชาเดิม</string>
+    <string name="header_select_target">เลือกวิชาเป้าหมาย</string>
+    <string name="header_upload_json">อัปโหลดไฟล์ JSON</string>
+    <string name="placeholder_select_file">เลือกไฟล์ .json จากเครื่อง</string>
+    <string name="label_file_name">ไฟล์: %1$s</string>
+    <string name="msg_success_import">✅ ข้อมูลถูกนำเข้าเรียบร้อย!</string>
+    <string name="btn_process_import">ประมวลผลและนำเข้าข้อมูล</string>
+
+    <!-- Error Messages -->
+    <string name="err_free_limit">❌ ขีดจำกัดผู้ใช้ฟรี: นำเข้าได้สูงสุด 3 วิชา (กรุณาลบวิชาเดิมออกก่อน หรือปลดล็อก Premium)</string>
+    <string name="err_no_file">❌ กรุณาเลือกไฟล์ก่อน</string>
+    <string name="err_no_target">❌ กรุณาเลือกวิชาเป้าหมาย</string>
+    <string name="err_code_mismatch">❌ รหัสวิชาไม่ตรงกัน! (ในไฟล์: %1$s)</string>
+    <string name="err_json_invalid">❌ ไฟล์ JSON ผิดพลาด: โปรดตรวจสอบรูปแบบไฟล์</string>
+    <string name="label_select_course">เลือกวิชา</string>
+    <string name="msg_no_data">ไม่มีข้อมูล...</string>
+
+    <string name="dialog_delete_course_title">ยืนยันการลบวิชา</string>
+    <string name="dialog_delete_course_desc">คุณต้องการลบวิชา \"%1$s\" ใช่หรือไม่?\nข้อมูลและประวัติการสอบทั้งหมดของวิชานี้จะหายไปถาวร</string>
+    <string name="btn_confirm_delete">ลบข้อมูล</string>
+    <string name="btn_cancel">ยกเลิก</string>
+
+
+    <string name="title_quiz_result">ผลการสอบ</string>
+    <string name="label_course_code_display">รหัสวิชา: %1$s</string>
+    <string name="label_score_unit">คะแนน</string>
+    <string name="msg_congrats">ยินดีด้วย!\nคุณได้เกรด </string>
+    <string name="msg_dont_give_up">พยายามต่อไปนะ!\nคุณได้เกรด </string>
+    <string name="msg_with_score"> ด้วยคะแนน </string>
+    <string name="stat_correct_answers">ข้อที่ถูก</string>
+    <string name="stat_wrong_answers">ข้อที่ผิด</string>
+    <string name="stat_passing_target">เกณฑ์ผ่าน (S)</string>
+    <string name="stat_accuracy_rate">ความแม่นยำ</string>
+    <string name="btn_check_answers_label">ดูเฉลย (Check Answers)</string>
+    <string name="btn_check_answers_restricted">ดูเฉลย (ถูกจำกัดสิทธิ์)</string>
+    <string name="btn_try_again">ทำข้อสอบใหม่อีกครั้ง</string>
+    <string name="btn_retry_not_allowed">ไม่อนุญาตให้สอบซ้ำ</string>
+    <string name="footer_finished">เสร็จแล้วใช่ไหม?</string>
+    <string name="footer_back_to_list">กลับสู่หน้ารายการวิชา</string>
+    <string name="btn_go">ไป</string>
+
+    <string name="title_review_quiz">เฉลยและคำอธิบาย</string>
+    <string name="label_question_number">ข้อที่ %1$d</string>
+    <string name="label_explanation">คำอธิบาย:</string>
+    <string name="hint_close_answer">💡 เกือบถูกแล้ว! คุณวิเคราะห์มาถูกทางแต่มีจุดหลอกเล็กน้อย</string>
+
+    <string name="title_course_details">รายละเอียดการสอบ</string>
+    <string name="default_course_desc">ตรวจสอบความพร้อมของคุณก่อนเริ่มทำข้อสอบ</string>
+    <string name="label_course_code_brief">รหัสวิชา: %1$s</string>
+    <string name="label_questions_count">จำนวนข้อสอบ: %1$d ข้อ</string>
+    <string name="label_total_time_header">เวลาทั้งหมด</string>
+    <string name="label_passing_criteria">เกณฑ์การผ่าน (S)</string>
+    <string name="header_security_rules">ข้อกำหนดและความปลอดภัย:</string>
+    <string name="rule_auto_submit">หากทำไม่เสร็จภายในเวลาที่กำหนด ระบบจะทำการ "ส่งคำตอบโดยอัตโนมัติ" ทันที</string>
+    <string name="rule_no_retry_allowed">ไม่อนุญาตให้สอบซ้ำ (คุณมีสิทธิ์ทำข้อสอบนี้ได้เพียงครั้งเดียวเท่านั้น)</string>
+    <string name="rule_anti_cheat_active">ห้ามสลับหน้าจอหรือเปิดแอปพลิเคชันอื่น มิฉะนั้นจะถูกตัดสิทธิ์การสอบทันที</string>
+    <string name="rule_prevent_screenshot">ห้ามบันทึกภาพหน้าจอ (Screenshot) หรือบันทึกวิดีโอ ระบบจะระงับการสอบหากตรวจพบ</string>
+    <string name="header_instructions">คำแนะนำ:</string>
+    <string name="instruction_body">กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตและแบตเตอรี่ของอุปกรณ์ให้เรียบร้อยก่อนกดเริ่มสอบ หากเกิดปัญหาระหว่างการสอบ กรุณาติดต่อผู้ดูแลระบบทันที</string>
+    <string name="unit_min_brief">นาที</string>
+    <string name="btn_start_quiz">เริ่มทำข้อสอบ</string>
+    <string name="status_restricted">ถูกจำกัดสิทธิ์</string>
+    <string name="dialog_delete_category_title">ลบหมวดหมู่วิชา</string>
+    <string name="dialog_delete_category_desc">คุณแน่ใจหรือไม่ว่าต้องการลบ \'%1$s\'? การกระทำนี้ไม่สามารถย้อนกลับได้</string>
+    <string name="btn_delete">ลบข้อมูล</string>
+
+    <string name="anticheat_title">ตรวจพบการสลับหน้าจอ!</string>
+    <string name="anticheat_desc">เนื่องจากคุณออกจากแอปหรือสลับหน้าจอในระหว่างการสอบ ระบบจึงระงับการสอบครั้งนี้และบันทึกคะแนนเป็น 0 ทันที</string>
+    <string name="anticheat_btn">รับทราบและส่งคะแนน 0</string>
+
+    <!-- Pro Gate Dialog -->
+    <string name="pro_gate_title">ฟีเจอร์ Pro</string>
+    <string name="pro_gate_desc">ฟีเจอร์นี้ใช้ได้เฉพาะเวอร์ชัน Pro เท่านั้น\nอัปเกรดเพื่อปลดล็อกฟีเจอร์ทั้งหมด</string>
+    <string name="pro_gate_btn">รับทราบ</string>
+
+    <!-- Home Screen – Mini Apps Section -->
+    <string name="mini_apps_section_title">แอปพลิเคชันเสริม</string>
+    <string name="mini_app_schedule">ตารางงาน</string>
+    <string name="mini_app_qr_scanner">สแกน QR</string>
+    <string name="mini_app_classroom">ห้องเรียน</string>
+    <string name="mini_app_grade_manager">จัดการคะแนน</string>
+    <string name="mini_app_submit_work">ส่งการบ้าน</string>
+    <string name="mini_app_attendance">เช็คชื่อ</string>
+    <string name="mini_app_open_files">เปิดไฟล์</string>
+    <string name="mini_app_history">ประวัติ</string>
+    <string name="home_game_banner_btn">▶  เล่นเกมเพื่อการศึกษา</string>
+
+    <!-- ===== B. ระบบห้องเรียน ===== -->
+
+    <!-- Classroom Hub -->
+    <string name="classroom_not_connected">ยังไม่ได้เชื่อมต่อเซิร์ฟเวอร์\nไปที่ Settings → เชื่อมต่อเซิร์ฟเวอร์ก่อน</string>
+    <string name="classroom_go_to_settings">ไปที่ Settings</string>
+    <string name="classroom_room_label">ห้อง</string>
+    <string name="classroom_teacher_label">อาจารย์</string>
+    <string name="classroom_loading">กำลังโหลด…</string>
+    <string name="classroom_error">เกิดข้อผิดพลาดในการโหลดข้อมูล</string>
+    <string name="classroom_retry">ลองใหม่</string>
+    <string name="classroom_feature_schedule">ตารางงาน</string>
+    <string name="classroom_feature_homework">ส่งการบ้าน</string>
+    <string name="classroom_feature_attendance">เช็คชื่อ</string>
+    <string name="classroom_feature_grades">จัดการคะแนน</string>
+    <string name="classroom_feature_files">เปิดไฟล์</string>
+    <string name="classroom_feature_arena">Online Arena</string>
+
+    <!-- QR Join -->
+    <string name="qr_title">QR เข้าห้อง</string>
+    <string name="qr_scan_hint">สแกน QR ที่อาจารย์แสดง หรือพิมพ์ Room ID ด้วยตนเอง</string>
+    <string name="qr_enter_manually">พิมพ์ Room ID</string>
+    <string name="qr_join_btn">เข้าห้องเรียน</string>
+    <string name="qr_join_success">เข้าห้องสำเร็จ!</string>
+    <string name="qr_invalid_code">Room ID ไม่ถูกต้อง</string>
+    <string name="qr_placeholder">เช่น ABC123</string>
+    <string name="qr_room_id_label">Room ID</string>
+    <string name="qr_connected_room">ห้องที่เชื่อมต่ออยู่</string>
+    <string name="qr_change_room">เปลี่ยนห้อง</string>
+
+    <!-- ตารางงาน / ปฏิทิน -->
+    <string name="schedule_title">ตารางงาน</string>
+    <string name="schedule_subtitle">ปฏิทินและกิจกรรม</string>
+    <string name="schedule_no_events">ไม่มีกิจกรรมในเดือนนี้</string>
+    <string name="schedule_set_reminder">ตั้งการแจ้งเตือน</string>
+    <string name="schedule_reminder_set">ตั้งแจ้งเตือนแล้ว ✓</string>
+    <string name="schedule_type_event">กิจกรรม</string>
+    <string name="schedule_type_exam">สอบ</string>
+    <string name="schedule_type_homework">งานส่ง</string>
+    <string name="schedule_type_holiday">วันหยุด</string>
+    <string name="schedule_event_desc_label">รายละเอียด</string>
+    <string name="schedule_today_events">กิจกรรมวันนี้</string>
+    <string name="schedule_upcoming">กิจกรรมที่จะมาถึง</string>
+
+    <!-- ส่งการบ้าน -->
+    <string name="homework_title">ส่งการบ้าน</string>
+    <string name="homework_subtitle">งานที่ต้องส่ง</string>
+    <string name="homework_no_assignments">ไม่มีงานที่ต้องส่ง</string>
+    <string name="homework_due_label">กำหนดส่ง:</string>
+    <string name="homework_status_pending">⏳ ยังไม่ส่ง</string>
+    <string name="homework_status_submitted">✅ ส่งแล้ว</string>
+    <string name="homework_status_late">⚠️ เลยกำหนดแล้ว</string>
+    <string name="homework_mark_done">ทำเสร็จแล้ว</string>
+    <string name="homework_set_reminder">แจ้งเตือนกำหนดส่ง</string>
+    <string name="homework_reminder_set">ตั้งแจ้งเตือนแล้ว ✓</string>
+    <string name="homework_file_attached">ไฟล์แนบ:</string>
+    <string name="homework_open_file">เปิดไฟล์</string>
+
+    <!-- เช็คชื่อ -->
+    <string name="attendance_title">เช็คชื่อ</string>
+    <string name="attendance_subtitle">บันทึกการเข้าเรียน</string>
+    <string name="attendance_no_records">ยังไม่มีบันทึกการเช็คชื่อ</string>
+    <string name="attendance_present">มาเรียน</string>
+    <string name="attendance_absent">ขาด</string>
+    <string name="attendance_late">มาสาย</string>
+    <string name="attendance_today">วันนี้:</string>
+    <string name="attendance_month_summary">สรุปเดือนนี้</string>
+    <string name="attendance_days_present">วันที่มา</string>
+    <string name="attendance_days_absent">วันที่ขาด</string>
+    <string name="attendance_days_late">วันที่สาย</string>
+    <string name="attendance_set_reminder">แจ้งเตือนตอนเช้า</string>
+    <string name="attendance_reminder_set">ตั้งแจ้งเตือนเช้าแล้ว ✓</string>
+    <string name="attendance_reminder_desc">แจ้งเตือนทุกเช้าก่อนถึงเวลาเรียน</string>
+
+    <!-- จัดการคะแนน -->
+    <string name="grades_title">จัดการคะแนน</string>
+    <string name="grades_subtitle">บันทึกคะแนน</string>
+    <string name="grades_no_records">ยังไม่มีบันทึกคะแนน</string>
+    <string name="grades_subject_label">วิชา</string>
+    <string name="grades_score_label">คะแนน</string>
+    <string name="grades_max_score_label">คะแนนเต็ม</string>
+    <string name="grades_date_label">วันที่ประกาศ</string>
+    <string name="grades_note_label">หมายเหตุ</string>
+    <string name="grades_average">คะแนนเฉลี่ย</string>
+    <string name="grades_highest">สูงสุด</string>
+    <string name="grades_lowest">ต่ำสุด</string>
+    <string name="grades_summary">สรุปคะแนน</string>
+
+    <!-- เปิดไฟล์ PDF -->
+    <string name="files_title">เปิดไฟล์ PDF</string>
+    <string name="files_subtitle">เอกสารชั้นเรียน</string>
+    <string name="files_no_files">ยังไม่มีไฟล์</string>
+    <string name="files_open_btn">เปิด</string>
+    <string name="files_download_btn">ดาวน์โหลด</string>
+    <string name="files_size_label">ขนาด:</string>
+    <string name="files_uploaded_label">อัปโหลดเมื่อ:</string>
+    <string name="files_opening">กำลังเปิดไฟล์…</string>
+    <string name="files_error_open">ไม่สามารถเปิดไฟล์ได้</string>
+
+    <!-- การแจ้งเตือน -->
+    <string name="notify_before_label">แจ้งเตือนก่อน</string>
+    <string name="notify_5min">5 นาที</string>
+    <string name="notify_15min">15 นาที</string>
+    <string name="notify_30min">30 นาที</string>
+    <string name="notify_1hour">1 ชั่วโมง</string>
+    <string name="notify_1day">1 วัน</string>
+    <string name="notify_channel_name">Q-Growth Reminders</string>
+    <string name="notify_channel_desc">การแจ้งเตือนตารางเรียนและงานส่ง</string>
+    <string name="notify_permission_rationale">อนุญาตการแจ้งเตือนเพื่อรับการแจ้งเตือนตารางเรียนและงานส่ง</string>
+</resources>
+
+

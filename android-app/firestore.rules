@@ -1,0 +1,133 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ────────────────────────────────────────────────────────────────────
+    // Helper
+    // ────────────────────────────────────────────────────────────────────
+    function isTeacher(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Teacher Profile
+    // teachers/{teacherUid}
+    // ────────────────────────────────────────────────────────────────────
+    match /teachers/{teacherUid} {
+      allow read, write: if isTeacher(teacherUid);
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Room (ครูเขียน / นักเรียนอ่าน)
+    // teachers/{teacherUid}/rooms/{roomId}
+    // ────────────────────────────────────────────────────────────────────
+    match /teachers/{teacherUid}/rooms/{roomId} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+
+    // Teacher-only collections: events, homework, grades, files, arena
+    match /teachers/{teacherUid}/rooms/{roomId}/events/{id} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+    match /teachers/{teacherUid}/rooms/{roomId}/homework/{id} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+    match /teachers/{teacherUid}/rooms/{roomId}/grades/{id} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+    match /teachers/{teacherUid}/rooms/{roomId}/files/{id} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+    match /teachers/{teacherUid}/rooms/{roomId}/arena/{id} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Students
+    // นักเรียน: สร้าง/อัปเดต name+avatar เท่านั้น (ห้ามแตะ status/role)
+    // ครู: แก้ได้ทุก field + ลบได้
+    // ────────────────────────────────────────────────────────────────────
+    match /teachers/{teacherUid}/rooms/{roomId}/students/{deviceId} {
+      allow read: if true;
+      allow create: if true;  // นักเรียนลงทะเบียน
+      allow update: if isTeacher(teacherUid) ||
+        request.resource.data.diff(resource.data)
+          .affectedKeys().hasOnly(['name', 'avatarBase64']);
+      allow delete: if isTeacher(teacherUid);
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Homework Submissions
+    // นักเรียนส่งงานได้ / ครูตรวจงาน (update grade/feedback) + ลบได้
+    // ────────────────────────────────────────────────────────────────────
+    match /teachers/{teacherUid}/rooms/{roomId}/submissions/{subId} {
+      allow read:   if true;
+      allow create: if true;
+      allow update: if isTeacher(teacherUid) ||
+        request.resource.data.diff(resource.data)
+          .affectedKeys().hasOnly(['answer', 'fileUrl', 'fileName', 'fileSizeBytes', 'submittedAt']);
+      allow delete: if isTeacher(teacherUid);
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Attendance Sessions (ครูสร้าง/เปิด/ปิด)
+    // ────────────────────────────────────────────────────────────────────
+    match /teachers/{teacherUid}/rooms/{roomId}/att_sessions/{sessionId} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+
+    // Check-ins (นักเรียนเช็คชื่อ — สร้างได้ ลบไม่ได้)
+    match /teachers/{teacherUid}/rooms/{roomId}/att_sessions/{sessionId}/checkins/{deviceId} {
+      allow read:   if true;
+      allow create: if true;
+      allow delete: if isTeacher(teacherUid);
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Exams (ครูสร้าง / นักเรียนอ่านเฉพาะที่ publish แล้ว)
+    // ────────────────────────────────────────────────────────────────────
+    match /teachers/{teacherUid}/rooms/{roomId}/exams/{examId} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+
+    // Questions (ครูสร้าง / นักเรียนอ่านได้)
+    match /teachers/{teacherUid}/rooms/{roomId}/exams/{examId}/questions/{qId} {
+      allow read:  if true;
+      allow write: if isTeacher(teacherUid);
+    }
+
+    // Exam Submissions
+    // นักเรียนส่งได้ครั้งเดียว (doc ID = deviceId)
+    // ครูอัปเดต score/isGraded + ลบได้
+    match /teachers/{teacherUid}/rooms/{roomId}/exams/{examId}/submissions/{deviceId} {
+      allow read:   if true;
+      allow create: if true;
+      allow update: if isTeacher(teacherUid);
+      allow delete: if isTeacher(teacherUid);
+    }
+
+    // ────────────────────────────────────────────────────────────────────
+    // Shared Quizzes
+    // สร้าง: เฉพาะครูที่ login
+    // อ่าน: ทุกคน
+    // update: เฉพาะ lockedToDevice (null → deviceId, ครั้งเดียว)
+    // ────────────────────────────────────────────────────────────────────
+    match /shared_quizzes/{code} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if
+        request.resource.data.diff(resource.data)
+          .affectedKeys().hasOnly(['lockedToDevice']) &&
+        resource.data.lockedToDevice == null;
+    }
+
+  }
+}
